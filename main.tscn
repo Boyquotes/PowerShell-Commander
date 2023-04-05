@@ -1,0 +1,416 @@
+[gd_scene load_steps=8 format=3 uid="uid://yvv44idtqjgw"]
+
+[ext_resource type="Script" path="res://scripts/main.gd" id="1_hlmg6"]
+[ext_resource type="Script" path="res://scripts/WIN_PING.gd" id="2_kcnhl"]
+[ext_resource type="Script" path="res://scripts/WIN_AD.gd" id="3_5xkjp"]
+[ext_resource type="Script" path="res://scripts/WIN_IPCONFIG.gd" id="3_8ehyb"]
+[ext_resource type="Script" path="res://scripts/WIN_DELPROF2.gd" id="5_gthk2"]
+[ext_resource type="Script" path="res://scripts/WIN_PS_LOGGED_ON.gd" id="6_bl4f8"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e06g7"]
+bg_color = Color(0.172549, 0.172549, 0.172549, 1)
+
+[node name="Node" type="Node"]
+script = ExtResource("1_hlmg6")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.337255, 0.337255, 0.337255, 1)
+
+[node name="Main_Window" type="MarginContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Main_Window"]
+layout_mode = 2
+alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Main_Window/VBoxContainer"]
+layout_mode = 2
+
+[node name="Clear_Console" type="Button" parent="Main_Window/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Clear Console"
+
+[node name="IP_COMMAND_TABS" type="MenuButton" parent="Main_Window/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "IP COMMANDS"
+flat = false
+switch_on_hover = true
+item_count = 2
+popup/item_0/text = "Ping"
+popup/item_0/id = 0
+popup/item_1/text = "IPConfig"
+popup/item_1/id = 1
+
+[node name="ACTIVE_DIRECTORY_TABS" type="MenuButton" parent="Main_Window/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "AD Utils"
+flat = false
+switch_on_hover = true
+item_count = 2
+popup/item_0/text = "Show All Locked Accounts"
+popup/item_0/id = 0
+popup/item_1/text = "Account Managment"
+popup/item_1/id = 1
+
+[node name="APPS" type="MenuButton" parent="Main_Window/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "APPS"
+flat = false
+switch_on_hover = true
+item_count = 4
+popup/item_0/text = "DelProf2.exe"
+popup/item_0/id = 0
+popup/item_0/separator = true
+popup/item_1/text = "Delete Local Account(s)"
+popup/item_1/id = 1
+popup/item_2/text = "SysinternalsSuite"
+popup/item_2/id = 0
+popup/item_2/separator = true
+popup/item_3/text = "Who Is Logged On?"
+popup/item_3/id = 2
+
+[node name="ColorRect" type="ColorRect" parent="Main_Window/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+color = Color(0.172549, 0.172549, 0.172549, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="Main_Window/VBoxContainer/ColorRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="CONSOLE_OUTPUT" type="RichTextLabel" parent="Main_Window/VBoxContainer/ColorRect/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+focus_mode = 2
+theme_override_colors/selection_color = Color(0.466667, 0.466667, 0.466667, 1)
+theme_override_styles/focus = SubResource("StyleBoxFlat_e06g7")
+theme_override_styles/normal = SubResource("StyleBoxFlat_e06g7")
+bbcode_enabled = true
+scroll_following = true
+context_menu_enabled = true
+threaded = true
+selection_enabled = true
+
+[node name="WIN_PING" type="Window" parent="."]
+unique_name_in_owner = true
+title = "Ping Window"
+position = Vector2i(50, 100)
+size = Vector2i(500, 100)
+visible = false
+unresizable = true
+script = ExtResource("2_kcnhl")
+
+[node name="ColorRect" type="ColorRect" parent="WIN_PING"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.337255, 0.337255, 0.337255, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="WIN_PING"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="WIN_PING/MarginContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="LineEdit" type="LineEdit" parent="WIN_PING/MarginContainer/VBoxContainer"]
+layout_mode = 2
+placeholder_text = "IP ADDRESS"
+alignment = 1
+clear_button_enabled = true
+caret_blink = true
+
+[node name="Button" type="Button" parent="WIN_PING/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "PING"
+
+[node name="WIN_IPCONFIG" type="Window" parent="."]
+unique_name_in_owner = true
+title = "IPConfig Window"
+position = Vector2i(50, 100)
+size = Vector2i(500, 50)
+visible = false
+unresizable = true
+script = ExtResource("3_8ehyb")
+
+[node name="ColorRect" type="ColorRect" parent="WIN_IPCONFIG"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.337255, 0.337255, 0.337255, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="WIN_IPCONFIG"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="WIN_IPCONFIG/MarginContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="ALL" type="Button" parent="WIN_IPCONFIG/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "All"
+
+[node name="FLUSH_DNS" type="Button" parent="WIN_IPCONFIG/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Flush DNS"
+
+[node name="RELEASE" type="Button" parent="WIN_IPCONFIG/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Release"
+
+[node name="RENEW" type="Button" parent="WIN_IPCONFIG/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Renew"
+
+[node name="WIN_AD" type="Window" parent="."]
+unique_name_in_owner = true
+title = "Active Directory Utils"
+position = Vector2i(50, 100)
+size = Vector2i(500, 100)
+visible = false
+unresizable = true
+script = ExtResource("3_5xkjp")
+
+[node name="ColorRect" type="ColorRect" parent="WIN_AD"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.337255, 0.337255, 0.337255, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="WIN_AD"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="WIN_AD/MarginContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="LineEdit" type="LineEdit" parent="WIN_AD/MarginContainer/VBoxContainer"]
+layout_mode = 2
+placeholder_text = "USER"
+alignment = 1
+clear_button_enabled = true
+caret_blink = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="WIN_AD/MarginContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Examine" type="Button" parent="WIN_AD/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Examine"
+
+[node name="Unlock" type="Button" parent="WIN_AD/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Unlock"
+
+[node name="WIN_DELPROF2" type="Window" parent="."]
+unique_name_in_owner = true
+title = "DELPROF2.exe"
+position = Vector2i(50, 100)
+size = Vector2i(500, 306)
+visible = false
+unresizable = true
+script = ExtResource("5_gthk2")
+
+[node name="ColorRect" type="ColorRect" parent="WIN_DELPROF2"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.337255, 0.337255, 0.337255, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="WIN_DELPROF2"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="WIN_DELPROF2/MarginContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="ColorRect" type="ColorRect" parent="WIN_DELPROF2/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+color = Color(0.172549, 0.172549, 0.172549, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="WIN_DELPROF2/MarginContainer/VBoxContainer/ColorRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="RichTextLabel" type="RichTextLabel" parent="WIN_DELPROF2/MarginContainer/VBoxContainer/ColorRect/MarginContainer"]
+layout_mode = 2
+bbcode_enabled = true
+text = "[center][color=red]Delprof2.exe Summary[/color][/center]
+To use on [b]your PC[/b], press the [b][color=red]Delete[/color][/b] button with no [b]PC Hostname & Username[/b]. To use for all profiles on [b]another PC[/b], enter the [b]PC Hostname without a Userusername[/b] and press the [b][color=red]Delete[/color][/b] button. To use for only one profile on another PC, enter the [b]PC & Username[/b] and press the [b][color=red]Delete[/color][/b] button."
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="WIN_DELPROF2/MarginContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="PC_Hostname" type="LineEdit" parent="WIN_DELPROF2/MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "PC Hostname"
+alignment = 1
+clear_button_enabled = true
+caret_blink = true
+
+[node name="User" type="LineEdit" parent="WIN_DELPROF2/MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "Username"
+alignment = 1
+clear_button_enabled = true
+caret_blink = true
+
+[node name="button" type="Button" parent="WIN_DELPROF2/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Delete"
+
+[node name="button2" type="Button" parent="WIN_DELPROF2/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+text = "Delete User From All PCs"
+
+[node name="WIN_PS_LOGGED_ON" type="Window" parent="."]
+unique_name_in_owner = true
+title = "PsLoggedon64.exe"
+position = Vector2i(50, 100)
+size = Vector2i(500, 100)
+visible = false
+unresizable = true
+script = ExtResource("6_bl4f8")
+
+[node name="ColorRect" type="ColorRect" parent="WIN_PS_LOGGED_ON"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.337255, 0.337255, 0.337255, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="WIN_PS_LOGGED_ON"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="WIN_PS_LOGGED_ON/MarginContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="LineEdit" type="LineEdit" parent="WIN_PS_LOGGED_ON/MarginContainer/VBoxContainer"]
+layout_mode = 2
+placeholder_text = "PC Hostname"
+alignment = 1
+clear_button_enabled = true
+caret_blink = true
+
+[node name="Button" type="Button" parent="WIN_PS_LOGGED_ON/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Poke"
+
+[connection signal="pressed" from="Main_Window/VBoxContainer/HBoxContainer/Clear_Console" to="." method="signalClearConsole"]
+[connection signal="close_requested" from="WIN_PING" to="WIN_PING" method="_on_close_requested"]
+[connection signal="text_submitted" from="WIN_PING/MarginContainer/VBoxContainer/LineEdit" to="WIN_PING" method="_on_line_edit_text_submitted"]
+[connection signal="pressed" from="WIN_PING/MarginContainer/VBoxContainer/Button" to="WIN_PING" method="_on_button_pressed"]
+[connection signal="close_requested" from="WIN_IPCONFIG" to="WIN_IPCONFIG" method="_on_close_requested"]
+[connection signal="pressed" from="WIN_IPCONFIG/MarginContainer/HBoxContainer/ALL" to="WIN_IPCONFIG" method="_on_ALL_button_pressed"]
+[connection signal="pressed" from="WIN_IPCONFIG/MarginContainer/HBoxContainer/FLUSH_DNS" to="WIN_IPCONFIG" method="_on_FLUSH_DNS_button_pressed"]
+[connection signal="pressed" from="WIN_IPCONFIG/MarginContainer/HBoxContainer/RELEASE" to="WIN_IPCONFIG" method="_on_RELEASE_button_pressed"]
+[connection signal="pressed" from="WIN_IPCONFIG/MarginContainer/HBoxContainer/RENEW" to="WIN_IPCONFIG" method="_on_RENEW_button_pressed"]
+[connection signal="close_requested" from="WIN_AD" to="WIN_AD" method="_on_close_requested"]
+[connection signal="text_submitted" from="WIN_AD/MarginContainer/VBoxContainer/LineEdit" to="WIN_AD" method="_on_line_edit_text_submitted"]
+[connection signal="pressed" from="WIN_AD/MarginContainer/VBoxContainer/HBoxContainer/Examine" to="WIN_AD" method="_on_examine_button_pressed"]
+[connection signal="pressed" from="WIN_AD/MarginContainer/VBoxContainer/HBoxContainer/Unlock" to="WIN_AD" method="_on_unlock_button_pressed"]
+[connection signal="close_requested" from="WIN_DELPROF2" to="WIN_DELPROF2" method="_on_close_requested"]
+[connection signal="pressed" from="WIN_DELPROF2/MarginContainer/VBoxContainer/button" to="WIN_DELPROF2" method="_on_button_pressed"]
+[connection signal="pressed" from="WIN_DELPROF2/MarginContainer/VBoxContainer/button2" to="WIN_DELPROF2" method="_on_button_2_pressed"]
+[connection signal="close_requested" from="WIN_PS_LOGGED_ON" to="WIN_PS_LOGGED_ON" method="_on_close_requested"]
+[connection signal="text_submitted" from="WIN_PS_LOGGED_ON/MarginContainer/VBoxContainer/LineEdit" to="WIN_PS_LOGGED_ON" method="_on_line_edit_text_submitted"]
+[connection signal="pressed" from="WIN_PS_LOGGED_ON/MarginContainer/VBoxContainer/Button" to="WIN_PS_LOGGED_ON" method="_on_button_pressed"]
