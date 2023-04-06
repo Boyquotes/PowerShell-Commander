@@ -110,6 +110,16 @@ delprof2.exe /u /id:%ID% /c:JL-LT02
 delprof2.exe /u /id:%ID% /c:JL-LT03
 delprof2.exe /u /id:%ID% /c:JL-LOBBY
 
+:: Jail Medical
+delprof2.exe /u /id:%ID% /c:JL-MED01
+delprof2.exe /u /id:%ID% /c:JL-MED02
+delprof2.exe /u /id:%ID% /c:JL-MED03
+delprof2.exe /u /id:%ID% /c:JL-MED04
+delprof2.exe /u /id:%ID% /c:JL-MED05
+delprof2.exe /u /id:%ID% /c:JL-MED06
+delprof2.exe /u /id:%ID% /c:JL-MEDSUP
+delprof2.exe /u /id:%ID% /c:JL-MEDDEP
+
 GOTO END
 
 :END
