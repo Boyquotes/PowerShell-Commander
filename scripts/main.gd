@@ -43,6 +43,8 @@ func clearConsole() -> void:
 	console_outut.text = ""
 
 func addToConsole(cInput : String) -> void:
+	cInput = cInput.replace("Copyright (C) 2000-2016 Mark Russinovich", "")
+	cInput = cInput.replace("Sysinternals - www.sysinternals.com", "")
 	console_outut.text += cInput
 	console_outut.text += "\n" + "[center][color=hotpink]<(^^<) (>^^)> (>^^<) ([b]Line Brake[/b]) (>^^<) <(^^<) (>^^)>[/color][/center]" + "\n"
 

@@ -1,2 +1,3 @@
 res://main.tscn
-res://scripts/WIN_AD.gd
+res://scripts/main.gd
+res://scripts/WIN_PS_LOGGED_ON.gd
