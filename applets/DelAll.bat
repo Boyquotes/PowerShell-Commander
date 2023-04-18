@@ -120,6 +120,20 @@ delprof2.exe /u /id:%ID% /c:JL-MED06
 delprof2.exe /u /id:%ID% /c:JL-MEDSUP
 delprof2.exe /u /id:%ID% /c:JL-MEDDEP
 
+:: DL
+delprof2.exe /u /id:%ID% /c:DL-01
+delprof2.exe /u /id:%ID% /c:DL-02
+delprof2.exe /u /id:%ID% /c:DL-03
+delprof2.exe /u /id:%ID% /c:DL-04
+delprof2.exe /u /id:%ID% /c:DL-05
+delprof2.exe /u /id:%ID% /c:DL-06
+delprof2.exe /u /id:%ID% /c:DL-07
+delprof2.exe /u /id:%ID% /c:DL-08
+delprof2.exe /u /id:%ID% /c:DL-09
+delprof2.exe /u /id:%ID% /c:DL-10
+delprof2.exe /u /id:%ID% /c:DL-11
+delprof2.exe /u /id:%ID% /c:DL-12
+
 GOTO END
 
 :END
