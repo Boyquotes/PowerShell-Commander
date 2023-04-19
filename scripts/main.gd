@@ -34,6 +34,9 @@ func _ready():
 
 func _process(_delta):
 	if (Input.is_action_pressed("ui_cancel")):
+		if (LockedAccountsID != -1):
+			self.get_child(LockedAccountsID).queue_free()
+			LockedAccountsID = -1
 		for i in windows:
 			windows[i].hide()
 			windows[i].reset()
@@ -45,8 +48,6 @@ func clearConsole() -> void:
 	console_outut.text = ""
 
 func addToConsole(cInput : String) -> void:
-	cInput = cInput.replacen("Copyright (C) 2000-2016 Mark Russinovich", "")
-	cInput = cInput.replacen("Sysinternals - www.sysinternals.com", "")
 	console_outut.text += cInput
 	console_outut.text += "\n" + "[center][color=hotpink]<(^^<) (>^^)> (>^^<) ([b]Line Brake[/b]) (>^^<) <(^^<) (>^^)>[/color][/center]" + "\n"
 
@@ -103,7 +104,6 @@ func createLockedAccountsWindow(_win : Window) -> void:
 		await (get_tree().create_timer(0.25).timeout)
 	self.add_child(_win)
 	LockedAccountsID = _win.get_index()
-	windows["Locked_Accounts"] = _win
 	_win.name = "Locked_Accounts"
 	_win.title = "Locked Accounts"
 	_win.position = Vector2(50, 100)
