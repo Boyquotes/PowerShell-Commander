@@ -2,7 +2,8 @@ extends Node
 
 @onready var console_outut = %CONSOLE_OUTPUT
 
-var windows : Dictionary
+var windows : Dictionary = {}
+var listOfLockedUsers : Dictionary = {}
 
 func _ready():
 	$Main_Window.show()
@@ -43,8 +44,8 @@ func clearConsole() -> void:
 	console_outut.text = ""
 
 func addToConsole(cInput : String) -> void:
-	cInput = cInput.replace("Copyright (C) 2000-2016 Mark Russinovich", "")
-	cInput = cInput.replace("Sysinternals - www.sysinternals.com", "")
+	cInput = cInput.replacen("Copyright (C) 2000-2016 Mark Russinovich", "")
+	cInput = cInput.replacen("Sysinternals - www.sysinternals.com", "")
 	console_outut.text += cInput
 	console_outut.text += "\n" + "[center][color=hotpink]<(^^<) (>^^)> (>^^<) ([b]Line Brake[/b]) (>^^<) <(^^<) (>^^)>[/color][/center]" + "\n"
 
@@ -58,7 +59,23 @@ func consoleCommandADLocked(cmdArg : PackedStringArray) -> void:
 	var _consoleBuffer : Array = []
 	OS.execute("POWERSHELL.exe", cmdArg, _consoleBuffer, true)
 	var _consoleOutput : String = _consoleBuffer[0]
+	
+#	Populate Locked Accounts Dict : listOfLockedUsers
 	if "SamAccountName" in _consoleOutput:
+		var placeHolderLoop : bool = true
+		var placeHolder : int = 0
+		var placeHolderOffset : int = 0
+		var numOfLockedUsers : int = 0
+		while (placeHolderLoop):
+			placeHolder = _consoleOutput.findn("SamAccountName", placeHolder) + 1
+			placeHolderOffset = _consoleOutput.findn("SID", placeHolder) + 1
+			if (placeHolder == 0):
+				placeHolderLoop = false
+			else:
+				var user : Dictionary = {"user" : _consoleOutput.substr(placeHolder + 23, placeHolderOffset - 25 - placeHolder)}
+				listOfLockedUsers[str(numOfLockedUsers)] = user
+				numOfLockedUsers += 1
+			
 		_consoleOutput = _consoleOutput.replacen("SamAccountName", "[color=green]SamAccountName")
 		_consoleOutput = _consoleOutput.replacen("SID", "[/color]SID")
 		_consoleOutput = _consoleOutput.replacen("PasswordExpired       : True", "[color=darkred]PasswordExpired       : True[/color]")
