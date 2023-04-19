@@ -1,12 +1,14 @@
+Container
+ColorRect
+ScrollContainer
+Label
+HBoxContainer
 MarginContainer
 RichTextLabel
-HBoxContainer
 Window
 Button
 LineEdit
-Label
 VBoxContainer
-ColorRect
 MenuButton
 TextEdit
 CenterContainer
