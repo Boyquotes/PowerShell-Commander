@@ -1,12 +1,12 @@
 2a60927148abd1d33b818b535e306557
-::res://::1681944078
-export_presets.cfg::TextFile::-1::1681944020::0::1::::<><>::
+::res://::1682442064
+export_presets.cfg::TextFile::-1::1681945437::0::1::::<><>::
 icon.svg::CompressedTexture2D::718324931708000535::1679499547::1679499555::1::::<><>::
-main.tscn::PackedScene::1729212560717295894::1681944034::0::1::::<><>::res://scripts/main.gd<>res://scripts/WIN_PING.gd<>res://scripts/WIN_AD.gd<>res://scripts/WIN_IPCONFIG.gd<>res://scripts/WIN_DELPROF2.gd<>res://scripts/WIN_PS_LOGGED_ON.gd
+main.tscn::PackedScene::1729212560717295894::1681945419::0::1::::<><>::res://scripts/main.gd<>res://scripts/WIN_PING.gd<>res://scripts/WIN_AD.gd<>res://scripts/WIN_IPCONFIG.gd<>res://scripts/WIN_DELPROF2.gd<>res://scripts/WIN_PS_LOGGED_ON.gd
 README.md::TextFile::-1::1680729062::0::1::::<><>::
 ::res://applets/::1680017863
-::res://scripts/::1681943971
-main.gd::GDScript::-1::1681943971::0::1::::<>Node<>::
+::res://scripts/::1681945417
+main.gd::GDScript::-1::1681945417::0::1::::<>Node<>::
 WIN_AD.gd::GDScript::-1::1680712266::0::1::::<>Window<>::
 WIN_DELPROF2.gd::GDScript::-1::1680017006::0::1::::<>Window<>::
 WIN_IPCONFIG.gd::GDScript::-1::1679600740::0::1::::<>Window<>::

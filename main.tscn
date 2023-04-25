@@ -59,7 +59,7 @@ popup/item_1/id = 1
 [node name="ACTIVE_DIRECTORY_TABS" type="MenuButton" parent="Main_Window/VBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
-text = "AD Utils"
+text = "AD UTILITIES"
 flat = false
 switch_on_hover = true
 item_count = 2
