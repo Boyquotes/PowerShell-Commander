@@ -2,7 +2,7 @@ extends Window
 
 signal consoleMSG(text : String)
 
-var textField : LineEdit
+@export var textField : LineEdit
 
 func _ready():
 	textField = find_child("LineEdit")

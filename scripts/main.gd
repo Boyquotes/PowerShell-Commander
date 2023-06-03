@@ -6,28 +6,36 @@ var windows : Dictionary = {}
 var LockedAccountsID : int = -1
 var listOfLockedUsers : Dictionary = {}
 
+@export var WIN_PING : Window
+@export var WIN_IPCONFIG : Window
+@export var WIN_AD : Window
+@export var WIN_AD_NEW : Window
+@export var WIN_DELPROF2 : Window
+@export var WIN_PS_LOGGED_ON : Window
+
 func _ready():
 	$Main_Window.show()
 	
-	windows.ping = %WIN_PING
-	windows.ipconfig = %WIN_IPCONFIG
-	windows.ad = %WIN_AD
-	windows.delprof2 = %WIN_DELPROF2
-	windows.PsLoggedOn = %WIN_PS_LOGGED_ON
+	windows.WIN_PING = WIN_PING
+	windows.WIN_IPCONFIG = WIN_IPCONFIG
+	windows.WIN_AD = WIN_AD
+	windows.WIN_AD_NEW = WIN_AD_NEW
+	windows.WIN_DELPROF2 = WIN_DELPROF2
+	windows.WIN_PS_LOGGED_ON = WIN_PS_LOGGED_ON
 	
-	windows.ping.consoleMSG.connect(addToConsole, 1)
-	windows.ipconfig.consoleMSG.connect(addToConsole, 1)
+	WIN_PING.consoleMSG.connect(addToConsole, 1)
+	WIN_IPCONFIG.consoleMSG.connect(addToConsole, 1)
 	var _win_pingTab : MenuButton = %IP_COMMAND_TABS
 	var _win_pingPop : PopupMenu = _win_pingTab.get_popup()
 	_win_pingPop.id_pressed.connect(IPCommandTabMenu, 1)
 	
-	windows.ad.consoleMSG.connect(addToConsole, 1)
+	WIN_AD.consoleMSG.connect(addToConsole, 1)
 	var _ADTab : MenuButton = %ACTIVE_DIRECTORY_TABS
 	var _ADPop : PopupMenu = _ADTab.get_popup()
 	_ADPop.id_pressed.connect(ADTabMenu, 1)
 	
-	windows.delprof2.consoleMSG.connect(addToConsole, 1)
-	windows.PsLoggedOn.consoleMSG.connect(addToConsole, 1)
+	WIN_DELPROF2.consoleMSG.connect(addToConsole, 1)
+	WIN_PS_LOGGED_ON.consoleMSG.connect(addToConsole, 1)
 	var _DelTab : MenuButton = %APPS
 	var _DelPop : PopupMenu = _DelTab.get_popup()
 	_DelPop.id_pressed.connect(AppTabMenu, 1)
@@ -180,30 +188,34 @@ func createLockedAccountsWindow(_win : Window) -> void:
 func IPCommandTabMenu(id : int) -> void:
 	match id:
 		0:
-			windows.ping.hide()
-			windows.ping.reset()
-			windows.ping.show()
+			WIN_PING.hide()
+			WIN_PING.reset()
+			WIN_PING.show()
 		1:
-			windows.ipconfig.hide()
-			windows.ipconfig.reset()
-			windows.ipconfig.show()
+			WIN_IPCONFIG.hide()
+			WIN_IPCONFIG.reset()
+			WIN_IPCONFIG.show()
 
 func ADTabMenu(id : int) -> void:
 	match id:
 		0:
 			consoleCommandADLocked(["Search-AdAccount", "-LockedOut"])
 		1:
-			windows.ad.hide()
-			windows.ad.reset()
-			windows.ad.show()
+			WIN_AD.hide()
+			WIN_AD.reset()
+			WIN_AD.show()
+		2:
+			WIN_AD_NEW.hide()
+			WIN_AD_NEW.reset()
+			WIN_AD_NEW.show()
 
 func AppTabMenu(id : int) -> void:
 	match id:
 		1:
-			windows.delprof2.hide()
-			windows.delprof2.reset()
-			windows.delprof2.show()
+			WIN_DELPROF2.hide()
+			WIN_DELPROF2.reset()
+			WIN_DELPROF2.show()
 		2:
-			windows.PsLoggedOn.hide()
-			windows.PsLoggedOn.reset()
-			windows.PsLoggedOn.show()
+			WIN_PS_LOGGED_ON.hide()
+			WIN_PS_LOGGED_ON.reset()
+			WIN_PS_LOGGED_ON.show()

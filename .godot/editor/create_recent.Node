@@ -1,3 +1,4 @@
+MenuButton
 Container
 ColorRect
 ScrollContainer
@@ -9,7 +10,6 @@ Window
 Button
 LineEdit
 VBoxContainer
-MenuButton
 TextEdit
 CenterContainer
 Node

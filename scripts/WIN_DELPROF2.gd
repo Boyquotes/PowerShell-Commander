@@ -1,13 +1,9 @@
 extends Window
 
-var hostname : LineEdit
-var username : LineEdit
+@export var hostname : LineEdit
+@export var username : LineEdit
 
 signal consoleMSG(text : String)
-
-func _ready():
-	hostname = find_child("PC_Hostname")
-	username = find_child("User")
 
 func _on_close_requested() -> void:
 	hide()
