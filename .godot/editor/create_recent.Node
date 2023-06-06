@@ -1,9 +1,9 @@
+HBoxContainer
 MenuButton
 Container
 ColorRect
 ScrollContainer
 Label
-HBoxContainer
 MarginContainer
 RichTextLabel
 Window

@@ -23,22 +23,22 @@ func _ready():
 	windows.WIN_DELPROF2 = WIN_DELPROF2
 	windows.WIN_PS_LOGGED_ON = WIN_PS_LOGGED_ON
 	
-	WIN_PING.consoleMSG.connect(addToConsole, 1)
-	WIN_IPCONFIG.consoleMSG.connect(addToConsole, 1)
+	WIN_PING.consoleMSG.connect(addToConsole)
+	WIN_IPCONFIG.consoleMSG.connect(addToConsole)
 	var _win_pingTab : MenuButton = %IP_COMMAND_TABS
 	var _win_pingPop : PopupMenu = _win_pingTab.get_popup()
-	_win_pingPop.id_pressed.connect(IPCommandTabMenu, 1)
+	_win_pingPop.id_pressed.connect(IPCommandTabMenu)
 	
-	WIN_AD.consoleMSG.connect(addToConsole, 1)
+	WIN_AD.consoleMSG.connect(addToConsole)
 	var _ADTab : MenuButton = %ACTIVE_DIRECTORY_TABS
 	var _ADPop : PopupMenu = _ADTab.get_popup()
-	_ADPop.id_pressed.connect(ADTabMenu, 1)
+	_ADPop.id_pressed.connect(ADTabMenu)
 	
-	WIN_DELPROF2.consoleMSG.connect(addToConsole, 1)
-	WIN_PS_LOGGED_ON.consoleMSG.connect(addToConsole, 1)
+	WIN_DELPROF2.consoleMSG.connect(addToConsole)
+	WIN_PS_LOGGED_ON.consoleMSG.connect(addToConsole)
 	var _DelTab : MenuButton = %APPS
 	var _DelPop : PopupMenu = _DelTab.get_popup()
-	_DelPop.id_pressed.connect(AppTabMenu, 1)
+	_DelPop.id_pressed.connect(AppTabMenu)
 
 func _process(_delta):
 	if (Input.is_action_pressed("ui_cancel")):
@@ -147,7 +147,6 @@ func createLockedAccountsWindow(_win : Window) -> void:
 	var itemUsernameTitle : Label = Label.new()
 	vBoxUser.add_child(itemUsernameTitle)
 	itemUsernameTitle.text = "Usernames"
-	var itemLockedTitle : Label = Label.new()
 	var vBoxPassTitle : Label = Label.new()
 	vBoxPass.add_child(vBoxPassTitle)
 	vBoxPassTitle.text = "Password Expired"

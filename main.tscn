@@ -273,15 +273,17 @@ layout_mode = 2
 size_flags_horizontal = 3
 text = "Unlock"
 
-[node name="WIN_AD_NEW" type="Window" parent="." node_paths=PackedStringArray("textField", "menu")]
+[node name="WIN_AD_NEW" type="Window" parent="." node_paths=PackedStringArray("first_name", "last_name", "username", "badge", "user_position")]
 title = "New AD Account"
 position = Vector2i(50, 100)
-size = Vector2i(500, 125)
-visible = false
+size = Vector2i(500, 200)
 unresizable = true
 script = ExtResource("6_1boei")
-textField = NodePath("MarginContainer/VBoxContainer/LineEdit")
-menu = NodePath("MarginContainer/VBoxContainer/MenuButton")
+first_name = NodePath("MarginContainer/VBoxContainer/HBoxContainer/First_LineEdit")
+last_name = NodePath("MarginContainer/VBoxContainer/HBoxContainer/Last_LineEdit")
+username = NodePath("MarginContainer/VBoxContainer/Username_LineEdit")
+badge = NodePath("MarginContainer/VBoxContainer/Badge_LineEdit")
+user_position = NodePath("MarginContainer/VBoxContainer/Position_Menu")
 
 [node name="ColorRect" type="ColorRect" parent="WIN_AD_NEW"]
 anchors_preset = 15
@@ -306,23 +308,52 @@ theme_override_constants/margin_bottom = 10
 layout_mode = 2
 alignment = 1
 
-[node name="LineEdit" type="LineEdit" parent="WIN_AD_NEW/MarginContainer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="WIN_AD_NEW/MarginContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="First_LineEdit" type="LineEdit" parent="WIN_AD_NEW/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "First Name"
+alignment = 1
+clear_button_enabled = true
+caret_blink = true
+
+[node name="Last_LineEdit" type="LineEdit" parent="WIN_AD_NEW/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "Last Name"
+alignment = 1
+clear_button_enabled = true
+caret_blink = true
+
+[node name="Username_LineEdit" type="LineEdit" parent="WIN_AD_NEW/MarginContainer/VBoxContainer"]
 layout_mode = 2
 placeholder_text = "Username"
 alignment = 1
 clear_button_enabled = true
 caret_blink = true
 
-[node name="MenuButton" type="MenuButton" parent="WIN_AD_NEW/MarginContainer/VBoxContainer"]
+[node name="Badge_LineEdit" type="LineEdit" parent="WIN_AD_NEW/MarginContainer/VBoxContainer"]
+layout_mode = 2
+placeholder_text = "Badge Number"
+alignment = 1
+clear_button_enabled = true
+caret_blink = true
+
+[node name="Position_Menu" type="MenuButton" parent="WIN_AD_NEW/MarginContainer/VBoxContainer"]
 layout_mode = 2
 text = "Position"
 flat = false
 switch_on_hover = true
-item_count = 2
+item_count = 3
 popup/item_0/text = "Deputy (PATROL)"
 popup/item_0/id = 0
 popup/item_1/text = "Deputy (JAIL)"
 popup/item_1/id = 1
+popup/item_2/text = "Emergency Communications Officer (Dispatcher)"
+popup/item_2/id = 2
 
 [node name="Button" type="Button" parent="WIN_AD_NEW/MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -478,7 +509,6 @@ text = "Poke"
 [connection signal="pressed" from="WIN_AD/MarginContainer/VBoxContainer/HBoxContainer/Examine" to="WIN_AD" method="_on_examine_button_pressed"]
 [connection signal="pressed" from="WIN_AD/MarginContainer/VBoxContainer/HBoxContainer/Unlock" to="WIN_AD" method="_on_unlock_button_pressed"]
 [connection signal="close_requested" from="WIN_AD_NEW" to="WIN_AD_NEW" method="_on_close_requested"]
-[connection signal="text_submitted" from="WIN_AD_NEW/MarginContainer/VBoxContainer/LineEdit" to="WIN_AD_NEW" method="_on_line_edit_text_submitted"]
 [connection signal="pressed" from="WIN_AD_NEW/MarginContainer/VBoxContainer/Button" to="WIN_AD_NEW" method="_on_button_pressed"]
 [connection signal="close_requested" from="WIN_DELPROF2" to="WIN_DELPROF2" method="_on_close_requested"]
 [connection signal="pressed" from="WIN_DELPROF2/MarginContainer/VBoxContainer/button" to="WIN_DELPROF2" method="_on_button_pressed"]
