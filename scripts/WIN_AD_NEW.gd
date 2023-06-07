@@ -72,7 +72,7 @@ func _on_button_pressed() -> void:
 		
 		var _textBuffer : String = consoleCommand([
 		"New-ADUser",
-		"-Name", 				str("\'" + username.text.to_lower() + "\'").replace(" ", ""),
+		"-Name", 				str("\'" + first_name.text + " " + last_name.text + "\'"),
 		"-SamAccountName", 		str("\'" + username.text.to_lower() + "\'").replace(" ", ""),
 		"-UserPrincipalName", 	str("\'" + username.text + "@kcsdadmn.com" + "\'").to_lower().replace(" ", ""),
 		"-GivenName", 			str("\'" + first_name.text + "\'").replace(" ", ""),
