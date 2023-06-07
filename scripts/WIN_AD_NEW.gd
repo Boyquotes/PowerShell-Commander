@@ -13,16 +13,20 @@ signal consoleMSG(text : String)
 @export var badge : LineEdit
 @export var user_position : MenuButton
 
-var positions : Dictionary = {1 : "Deputy (PATROL)", 2 : "Deputy (JAIL)"}
+@onready var positions_file : String = "positions.cfg"
+
+var positions : Dictionary = {}
 
 var config : Dictionary = {"distinguishedName" : "", "description" : "", "title" : "", "department" : "",
 "company" : ""}
 var list_of_groups : Dictionary = {1 : "Patrol Global"}
 
 func _ready():
+	Load_Positions_Config()
+	
 	var user_pos_popup : PopupMenu = user_position.get_popup()
-	for n in positions.keys():
-		user_pos_popup.add_item(positions[n])
+	for n in positions.values():
+		user_pos_popup.add_item(n.Name)
 	user_pos_popup.id_pressed.connect(User_Position_Menu_Popup)
 
 func _on_close_requested() -> void:
@@ -50,13 +54,13 @@ func consoleCommand(cmdArg : PackedStringArray) -> String:
 
 func User_Position_Menu_Popup(id : int) -> void:
 	for n in positions.keys():
-		if (n - 1 == id):
-			user_position.text = positions[n]
-			config.distinguishedName = "OU=ISDEPT,DC=kcsdadmn,DC=com"
-			config.description = "PC/Network Specialist"
-			config.title = "PC/Network Specialist"
-			config.department = "IT"
-			config.company = "Kootenai County Sheriffs Office"
+		if (str_to_var(n) == id):
+			user_position.text = positions[n].Name
+			config.distinguishedName = positions[n].data.distinguishedName
+			config.description = positions[n].data.description
+			config.title = positions[n].data.title
+			config.department = positions[n].data.department
+			config.company = positions[n].data.company
 			break
 
 func _on_button_pressed() -> void:
@@ -91,3 +95,19 @@ func _on_button_pressed() -> void:
 		for group in list_of_groups.values():
 			_textBuffer = consoleCommand(["Add-ADGroupMember", "-Identity", group.replace(" ", "\' \'"), "-Members", username.text])
 			consoleMSG.emit(username.text + " Add to " + group + ".")
+
+func Load_Positions_Config() -> void:
+	var file = FileAccess.open(positions_file, FileAccess.READ)
+	var text : String = file.get_as_text()
+	file.open(positions_file, FileAccess.READ)
+	var json : JSON = JSON.new()
+	var error = json.parse(text)
+	if error == OK:
+		positions = json.data
+		if typeof(positions) == TYPE_ARRAY:
+			print(positions) # Prints array
+		else:
+			print("Unexpected data")
+	else:
+		print("JSON Parse Error: ", json.get_error_message(), " in ", text, " at line ", json.get_error_line())
+	file = null
