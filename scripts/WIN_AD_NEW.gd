@@ -97,17 +97,18 @@ func _on_button_pressed() -> void:
 			consoleMSG.emit(username.text + " Add to " + group + ".")
 
 func Load_Positions_Config() -> void:
-	var file = FileAccess.open(positions_file, FileAccess.READ)
-	var text : String = file.get_as_text()
-	file.open(positions_file, FileAccess.READ)
-	var json : JSON = JSON.new()
-	var error = json.parse(text)
-	if error == OK:
-		positions = json.data
-		if typeof(positions) == TYPE_ARRAY:
-			print(positions) # Prints array
+	if (FileAccess.file_exists(positions_file)):
+		var file = FileAccess.open(positions_file, FileAccess.READ)
+		var text : String = file.get_as_text()
+		file.open(positions_file, FileAccess.READ)
+		var json : JSON = JSON.new()
+		var error = json.parse(text)
+		if error == OK:
+			positions = json.data
+			if typeof(positions) == TYPE_ARRAY:
+				print(positions) # Prints array
+			else:
+				print("Unexpected data")
 		else:
-			print("Unexpected data")
-	else:
-		print("JSON Parse Error: ", json.get_error_message(), " in ", text, " at line ", json.get_error_line())
-	file = null
+			print("JSON Parse Error: ", json.get_error_message(), " in ", text, " at line ", json.get_error_line())
+		file = null
