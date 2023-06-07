@@ -68,8 +68,6 @@ func _on_button_pressed() -> void:
 		if (badge.text != ""):
 			badge_text = " - #" + badge.text
 		
-		print(str("\"" + "\'" + config.distinguishedName + "\'" + "\""))
-		
 		var _textBuffer : String = consoleCommand([
 		"New-ADUser",
 		"-Name", 				str("\'" + first_name.text + " " + last_name.text + "\'"),
