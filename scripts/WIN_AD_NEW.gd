@@ -88,8 +88,11 @@ func _on_button_pressed() -> void:
 		"-Profilepath", 		str("\'" + config.profilepath + username.text + "\'"),
 		"-Enabled $false"
 		])
-		consoleMSG.emit(str("Adding new user...\n" + _textBuffer))
-		Add_Groups()
+		if (_textBuffer == ""):
+			consoleMSG.emit("Adding new user...")
+			Add_Groups()
+		else:
+			consoleMSG.emit(_textBuffer)
 
 func Add_Groups() -> void:
 	for group in list_of_groups.values():
