@@ -34,6 +34,8 @@ func _ready():
 	var _ADPop : PopupMenu = _ADTab.get_popup()
 	_ADPop.id_pressed.connect(ADTabMenu)
 	
+	WIN_AD_NEW.consoleMSG.connect(addToConsole)
+	
 	WIN_DELPROF2.consoleMSG.connect(addToConsole)
 	WIN_PS_LOGGED_ON.consoleMSG.connect(addToConsole)
 	var _DelTab : MenuButton = %APPS

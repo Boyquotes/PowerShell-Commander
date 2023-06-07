@@ -273,15 +273,16 @@ layout_mode = 2
 size_flags_horizontal = 3
 text = "Unlock"
 
-[node name="WIN_AD_NEW" type="Window" parent="." node_paths=PackedStringArray("first_name", "last_name", "username", "badge", "user_position")]
+[node name="WIN_AD_NEW" type="Window" parent="." node_paths=PackedStringArray("first_name", "last_name", "username", "password", "badge", "user_position")]
 title = "New AD Account"
 position = Vector2i(50, 100)
-size = Vector2i(500, 200)
+size = Vector2i(500, 225)
 unresizable = true
 script = ExtResource("6_1boei")
 first_name = NodePath("MarginContainer/VBoxContainer/HBoxContainer/First_LineEdit")
 last_name = NodePath("MarginContainer/VBoxContainer/HBoxContainer/Last_LineEdit")
 username = NodePath("MarginContainer/VBoxContainer/Username_LineEdit")
+password = NodePath("MarginContainer/VBoxContainer/Password_LineEdit")
 badge = NodePath("MarginContainer/VBoxContainer/Badge_LineEdit")
 user_position = NodePath("MarginContainer/VBoxContainer/Position_Menu")
 
@@ -315,6 +316,7 @@ alignment = 1
 [node name="First_LineEdit" type="LineEdit" parent="WIN_AD_NEW/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+text = "David"
 placeholder_text = "First Name"
 alignment = 1
 clear_button_enabled = true
@@ -323,6 +325,7 @@ caret_blink = true
 [node name="Last_LineEdit" type="LineEdit" parent="WIN_AD_NEW/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+text = "King"
 placeholder_text = "Last Name"
 alignment = 1
 clear_button_enabled = true
@@ -330,8 +333,17 @@ caret_blink = true
 
 [node name="Username_LineEdit" type="LineEdit" parent="WIN_AD_NEW/MarginContainer/VBoxContainer"]
 layout_mode = 2
+text = "dking"
 placeholder_text = "Username"
 alignment = 1
+clear_button_enabled = true
+caret_blink = true
+
+[node name="Password_LineEdit" type="LineEdit" parent="WIN_AD_NEW/MarginContainer/VBoxContainer"]
+layout_mode = 2
+placeholder_text = "Password"
+alignment = 1
+secret = true
 clear_button_enabled = true
 caret_blink = true
 
