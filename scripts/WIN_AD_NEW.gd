@@ -72,14 +72,14 @@ func _on_button_pressed() -> void:
 		
 		var _textBuffer : String = consoleCommand([
 		"New-ADUser",
-		"-Name", 				str("\'" + username.text.to_lower() + "\'"),
-		"-SamAccountName", 		str("\'" + username.text.to_lower() + "\'"),
-		"-UserPrincipalName", 	str("\'" + username.text + "@kcsdadmn.com" + "\'").to_lower(),
-		"-GivenName", 			str("\'" + first_name.text + "\'"),
-		"-Surname", 			str("\'" + last_name.text + "\'"),
+		"-Name", 				str("\'" + username.text.to_lower() + "\'").replace(" ", ""),
+		"-SamAccountName", 		str("\'" + username.text.to_lower() + "\'").replace(" ", ""),
+		"-UserPrincipalName", 	str("\'" + username.text + "@kcsdadmn.com" + "\'").to_lower().replace(" ", ""),
+		"-GivenName", 			str("\'" + first_name.text + "\'").replace(" ", ""),
+		"-Surname", 			str("\'" + last_name.text + "\'").replace(" ", ""),
 		"-DisplayName", 		str("\'" + first_name.text + " " + last_name.text + "\'"),
-		"-EmailAddress", 		str("\'" + first_name.text.left(1) + last_name.text + "@kcgov.us" + "\'").to_lower(),
-		"-AccountPassword", 	str("(ConvertTo-SecureString -AsPlainText " + "\'" + password.text + "\'" + " -Force)"),
+		"-EmailAddress", 		str("\'" + first_name.text.left(1) + last_name.text + "@kcgov.us" + "\'").to_lower().replace(" ", ""),
+		"-AccountPassword", 	str("(ConvertTo-SecureString -AsPlainText " + "\'" + password.text.replace(" ", "") + "\'" + " -Force)"),
 		"-CannotChangePassword", "$false",
 		"-ChangePasswordAtLogon", "$true",
 		"-Description", 		str("\'" + config.description + badge_text + "\'"),
@@ -96,7 +96,6 @@ func _on_button_pressed() -> void:
 func Add_Groups() -> void:
 	for group in list_of_groups.values():
 		var _textBuffer : String = consoleCommand(["Add-ADGroupMember", "-Identity", str("\'" + group.replace("\'", "\'\'") + "\'"), "-Members", username.text])
-		consoleMSG.emit(_textBuffer)
 		consoleMSG.emit("[color=light green]" + "[u]" + username.text + "[/u]" + " Added to " + "\"" +group + "\"" + "." + "[/color]")
 
 func Load_Positions_Config() -> void:
