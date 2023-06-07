@@ -35,6 +35,7 @@ func reset() -> void:
 	config.title = ""
 	config.department = ""
 	config.company = ""
+	config.profilepath = ""
 	first_name.text = ""
 	last_name.text = ""
 	username.text = ""
@@ -57,6 +58,7 @@ func User_Position_Menu_Popup(id : int) -> void:
 			config.title = positions[n].data.title
 			config.department = positions[n].data.department
 			config.company = positions[n].data.company
+			config.profilepath = positions[n].data.profilepath
 			list_of_groups = positions[n].data.groups
 			break
 
@@ -66,7 +68,7 @@ func _on_button_pressed() -> void:
 		if (badge.text != ""):
 			badge_text = " - #" + badge.text
 		
-		var console_command : String = str("New-ADUser"+" -Name "+str("\""+username.text.to_lower()+"\"")+" -SamAccountName "+str("\""+username.text.to_lower()+"\"")+" -UserPrincipalName "+str("\""+username.text + "@kcsdadmn.com"+"\"").to_lower()+" -GivenName "+str("\""+first_name.text+"\"")+" -Surname "+str("\""+last_name.text+"\"")+" -DisplayName "+str("\""+first_name.text + " " + last_name.text+"\"")+" -EmailAddress "+str("\""+first_name.text.left(1) + last_name.text + "@kcgov.us"+"\"").to_lower()+" -AccountPassword "+"(ConvertTo-SecureString -AsPlainText " + "\"" + password.text + "\"" + " -Force)"+" -CannotChangePassword $false"+" -ChangePasswordAtLogon $true"+" -Description "+str("\""+config.description + badge_text+"\"")+" -Title "+str("\""+config.title+"\"")+" -Department "+str("\""+config.department+"\"")+" -Company "+str("\""+config.company+"\"")+" -Path "+str("\""+config.distinguishedName+"\"")+" -Profilepath "+str("\""+"\\\\kcsdadmn.com\\userfilespace\\UserProfiles\\" + username.text.to_lower()+"\"")+" -Enabled $false")
+		var console_command : String = str("New-ADUser"+" -Name "+str("\""+username.text.to_lower()+"\"")+" -SamAccountName "+str("\""+username.text.to_lower()+"\"")+" -UserPrincipalName "+str("\""+username.text + "@kcsdadmn.com"+"\"").to_lower()+" -GivenName "+str("\""+first_name.text+"\"")+" -Surname "+str("\""+last_name.text+"\"")+" -DisplayName "+str("\""+first_name.text + " " + last_name.text+"\"")+" -EmailAddress "+str("\""+first_name.text.left(1) + last_name.text + "@kcgov.us"+"\"").to_lower()+" -AccountPassword "+"(ConvertTo-SecureString -AsPlainText " + "\"" + password.text + "\"" + " -Force)"+" -CannotChangePassword $false"+" -ChangePasswordAtLogon $true"+" -Description "+str("\""+config.description + badge_text+"\"")+" -Title "+str("\""+config.title+"\"")+" -Department "+str("\""+config.department+"\"")+" -Company "+str("\""+config.company+"\"")+" -Path "+str("\""+config.distinguishedName+"\"")+" -Profilepath "+str("\"" + config.profilepath + username.text.to_lower()+"\"")+" -Enabled $false")
 		consoleMSG.emit(console_command)
 		
 		#		var _textBuffer : String = consoleCommand([
