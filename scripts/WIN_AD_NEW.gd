@@ -68,40 +68,36 @@ func _on_button_pressed() -> void:
 		if (badge.text != ""):
 			badge_text = " - #" + badge.text
 		
-		var console_command : String = str("New-ADUser"+" -Name "+str("\""+username.text.to_lower()+"\"")+" -SamAccountName "+str("\""+username.text.to_lower()+"\"")+" -UserPrincipalName "+str("\""+username.text + "@kcsdadmn.com"+"\"").to_lower()+" -GivenName "+str("\""+first_name.text+"\"")+" -Surname "+str("\""+last_name.text+"\"")+" -DisplayName "+str("\""+first_name.text + " " + last_name.text+"\"")+" -EmailAddress "+str("\""+first_name.text.left(1) + last_name.text + "@kcgov.us"+"\"").to_lower()+" -AccountPassword "+"(ConvertTo-SecureString -AsPlainText " + "\"" + password.text + "\"" + " -Force)"+" -CannotChangePassword $false"+" -ChangePasswordAtLogon $true"+" -Description "+str("\""+config.description + badge_text+"\"")+" -Title "+str("\""+config.title+"\"")+" -Department "+str("\""+config.department+"\"")+" -Company "+str("\""+config.company+"\"")+" -Path "+str("\""+config.distinguishedName+"\"")+" -Profilepath "+str("\"" + config.profilepath + username.text.to_lower()+"\"")+" -Enabled $false")
-		consoleMSG.emit(console_command)
+		print(str("\"" + "\'" + config.distinguishedName + "\'" + "\""))
 		
-		#		var _textBuffer : String = consoleCommand([
-#			"New-ADUser",
-#			"-Name", 				username.text.to_lower(),
-#			"-SamAccountName", 		username.text.to_lower(),
-#			"-UserPrincipalName", 	str(username.text + "@kcsdadmn.com").to_lower(),
-#			"-GivenName", 			first_name.text,
-#			"-Surname", 			last_name.text,
-#			"-DisplayName", 		str(first_name.text + "' '" + last_name.text),
-#			"-EmailAddress", 		str(first_name.text.left(1) + last_name.text + "@kcgov.us").to_lower(),
-#			"-AccountPassword", 	str("(ConvertTo-SecureString -AsPlainText " + password.text + " -Force)"),
-#			"-CannotChangePassword", "$false",
-#			"-ChangePasswordAtLogon", "$true",
-#			"-Description", 		str(config.description + badge_text).replace(" ", "' '"),
-#			"-Title", 				config.title.replace(" ", "' '"),
-#			"-Department", 			config.department.replace(" ", "' '"),
-#			"-Company", 			str(config.company).replace(" ", "' '").replace(",", "\\2C"),
-#			"-Path", 				str(config.distinguishedName).replace(" ", "' '").replace(",", "\\2C"),
-#			"-Profilepath", 		str("\\\\kcsdadmn.com\\userfilespace\\UserProfiles\\" + username.text.to_lower()),
-#			"-Enabled $false"
-#		])
+		var _textBuffer : String = consoleCommand([
+		"New-ADUser",
+		"-Name", 				str("\'" + username.text.to_lower() + "\'"),
+		"-SamAccountName", 		str("\'" + username.text.to_lower() + "\'"),
+		"-UserPrincipalName", 	str("\'" + username.text + "@kcsdadmn.com" + "\'").to_lower(),
+		"-GivenName", 			str("\'" + first_name.text + "\'"),
+		"-Surname", 			str("\'" + last_name.text + "\'"),
+		"-DisplayName", 		str("\'" + first_name.text + " " + last_name.text + "\'"),
+		"-EmailAddress", 		str("\'" + first_name.text.left(1) + last_name.text + "@kcgov.us" + "\'").to_lower(),
+		"-AccountPassword", 	str("(ConvertTo-SecureString -AsPlainText " + "\'" + password.text + "\'" + " -Force)"),
+		"-CannotChangePassword", "$false",
+		"-ChangePasswordAtLogon", "$true",
+		"-Description", 		str("\'" + config.description + badge_text + "\'"),
+		"-Title", 				str("\'" + config.title + "\'"),
+		"-Department", 			str("\'" + config.department + "\'"),
+		"-Company", 			str("\'" + config.company.replace("\'", "\'\'") + "\'"),
+		"-Path", 				str("\'" + config.distinguishedName.replace("\'", "\'\'") + "\'"),
+		"-Profilepath", 		str("\'" + config.profilepath + username.text + "\'"),
+		"-Enabled $false"
+		])
+		consoleMSG.emit(str("Adding new user...\n" + _textBuffer))
+		Add_Groups()
 
 func Add_Groups() -> void:
-	var _textBuffer : String = ""
 	for group in list_of_groups.values():
-		_textBuffer = consoleCommand(["Add-ADGroupMember", "-Identity", group.replace(" ", "\' \'"), "-Members", username.text])
-		var _test : String = ""
-		if (group.contains("'")):
-			print("&apos")
-			consoleMSG.emit("[color=red]" + "[u]" + username.text + "[/u]" + " Needs to be manually added to " + "\"" +group + "\"" + "." + "[/color]")
-		else:
-			consoleMSG.emit("[color=light green]" + "[u]" + username.text + "[/u]" + " Added to " + "\"" +group + "\"" + "." + "[/color]")
+		var _textBuffer : String = consoleCommand(["Add-ADGroupMember", "-Identity", str("\'" + group.replace("\'", "\'\'") + "\'"), "-Members", username.text])
+		consoleMSG.emit(_textBuffer)
+		consoleMSG.emit("[color=light green]" + "[u]" + username.text + "[/u]" + " Added to " + "\"" +group + "\"" + "." + "[/color]")
 
 func Load_Positions_Config() -> void:
 	if (FileAccess.file_exists(positions_file)):

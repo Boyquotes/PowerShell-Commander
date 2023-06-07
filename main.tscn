@@ -279,8 +279,7 @@ text = "Unlock"
 [node name="WIN_AD_NEW" type="Window" parent="." node_paths=PackedStringArray("first_name", "last_name", "username", "password", "badge", "user_position")]
 title = "New AD Account"
 position = Vector2i(50, 100)
-size = Vector2i(500, 250)
-visible = false
+size = Vector2i(500, 220)
 unresizable = true
 script = ExtResource("6_1boei")
 first_name = NodePath("MarginContainer/VBoxContainer/HBoxContainer/First_LineEdit")
@@ -366,13 +365,14 @@ text = "Position"
 flat = false
 switch_on_hover = true
 
-[node name="Gen_Code" type="Button" parent="WIN_AD_NEW/MarginContainer/VBoxContainer"]
+[node name="Create_User" type="Button" parent="WIN_AD_NEW/MarginContainer/VBoxContainer"]
 layout_mode = 2
-text = "Generate Code"
-
-[node name="Add_Groups" type="Button" parent="WIN_AD_NEW/MarginContainer/VBoxContainer"]
-layout_mode = 2
-text = "Add Groups"
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(1, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(1, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(1, 0, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(1, 0, 0, 1)
+text = "Create User"
 
 [node name="WIN_DELPROF2" type="Window" parent="." node_paths=PackedStringArray("hostname", "username")]
 title = "DELPROF2.exe"
@@ -519,8 +519,7 @@ text = "Poke"
 [connection signal="pressed" from="WIN_AD/MarginContainer/VBoxContainer/HBoxContainer/Examine" to="WIN_AD" method="_on_examine_button_pressed"]
 [connection signal="pressed" from="WIN_AD/MarginContainer/VBoxContainer/HBoxContainer/Unlock" to="WIN_AD" method="_on_unlock_button_pressed"]
 [connection signal="close_requested" from="WIN_AD_NEW" to="WIN_AD_NEW" method="_on_close_requested"]
-[connection signal="pressed" from="WIN_AD_NEW/MarginContainer/VBoxContainer/Gen_Code" to="WIN_AD_NEW" method="_on_button_pressed"]
-[connection signal="pressed" from="WIN_AD_NEW/MarginContainer/VBoxContainer/Add_Groups" to="WIN_AD_NEW" method="Add_Groups"]
+[connection signal="pressed" from="WIN_AD_NEW/MarginContainer/VBoxContainer/Create_User" to="WIN_AD_NEW" method="_on_button_pressed"]
 [connection signal="close_requested" from="WIN_DELPROF2" to="WIN_DELPROF2" method="_on_close_requested"]
 [connection signal="pressed" from="WIN_DELPROF2/MarginContainer/VBoxContainer/button" to="WIN_DELPROF2" method="_on_button_pressed"]
 [connection signal="pressed" from="WIN_DELPROF2/MarginContainer/VBoxContainer/button2" to="WIN_DELPROF2" method="_on_button_2_pressed"]
