@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://dfvfcv7taxdbr"]
+[gd_scene load_steps=10 format=3 uid="uid://dfvfcv7taxdbr"]
 
 [ext_resource type="Script" path="res://scripts/Main.gd" id="1_1gent"]
 [ext_resource type="Script" path="res://scripts/WIN_PING.gd" id="2_kcnhl"]
@@ -10,6 +10,9 @@
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e06g7"]
 bg_color = Color(0.172549, 0.172549, 0.172549, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2r5gf"]
+bg_color = Color(0.172549, 0.254902, 0.290196, 1)
 
 [node name="Main" type="Node" node_paths=PackedStringArray("WIN_PING", "WIN_IPCONFIG", "WIN_AD", "WIN_AD_NEW", "WIN_DELPROF2", "WIN_PS_LOGGED_ON")]
 script = ExtResource("1_1gent")
@@ -276,7 +279,8 @@ text = "Unlock"
 [node name="WIN_AD_NEW" type="Window" parent="." node_paths=PackedStringArray("first_name", "last_name", "username", "password", "badge", "user_position")]
 title = "New AD Account"
 position = Vector2i(50, 100)
-size = Vector2i(500, 225)
+size = Vector2i(500, 250)
+visible = false
 unresizable = true
 script = ExtResource("6_1boei")
 first_name = NodePath("MarginContainer/VBoxContainer/HBoxContainer/First_LineEdit")
@@ -316,7 +320,6 @@ alignment = 1
 [node name="First_LineEdit" type="LineEdit" parent="WIN_AD_NEW/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "David"
 placeholder_text = "First Name"
 alignment = 1
 clear_button_enabled = true
@@ -325,7 +328,6 @@ caret_blink = true
 [node name="Last_LineEdit" type="LineEdit" parent="WIN_AD_NEW/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "King"
 placeholder_text = "Last Name"
 alignment = 1
 clear_button_enabled = true
@@ -333,7 +335,6 @@ caret_blink = true
 
 [node name="Username_LineEdit" type="LineEdit" parent="WIN_AD_NEW/MarginContainer/VBoxContainer"]
 layout_mode = 2
-text = "dking"
 placeholder_text = "Username"
 alignment = 1
 clear_button_enabled = true
@@ -356,18 +357,22 @@ caret_blink = true
 
 [node name="Position_Menu" type="MenuButton" parent="WIN_AD_NEW/MarginContainer/VBoxContainer"]
 layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_2r5gf")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_2r5gf")
+theme_override_styles/hover = SubResource("StyleBoxFlat_2r5gf")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_2r5gf")
+theme_override_styles/focus = SubResource("StyleBoxFlat_2r5gf")
 text = "Position"
 flat = false
 switch_on_hover = true
 
-[node name="Button" type="Button" parent="WIN_AD_NEW/MarginContainer/VBoxContainer"]
+[node name="Gen_Code" type="Button" parent="WIN_AD_NEW/MarginContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_colors/font_color = Color(1, 0, 0, 1)
-theme_override_colors/font_pressed_color = Color(1, 0, 0, 1)
-theme_override_colors/font_hover_color = Color(1, 0, 0, 1)
-theme_override_colors/font_focus_color = Color(1, 0, 0, 1)
-theme_override_colors/font_hover_pressed_color = Color(1, 0, 0, 1)
-text = "Create"
+text = "Generate Code"
+
+[node name="Add_Groups" type="Button" parent="WIN_AD_NEW/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Add Groups"
 
 [node name="WIN_DELPROF2" type="Window" parent="." node_paths=PackedStringArray("hostname", "username")]
 title = "DELPROF2.exe"
@@ -514,7 +519,8 @@ text = "Poke"
 [connection signal="pressed" from="WIN_AD/MarginContainer/VBoxContainer/HBoxContainer/Examine" to="WIN_AD" method="_on_examine_button_pressed"]
 [connection signal="pressed" from="WIN_AD/MarginContainer/VBoxContainer/HBoxContainer/Unlock" to="WIN_AD" method="_on_unlock_button_pressed"]
 [connection signal="close_requested" from="WIN_AD_NEW" to="WIN_AD_NEW" method="_on_close_requested"]
-[connection signal="pressed" from="WIN_AD_NEW/MarginContainer/VBoxContainer/Button" to="WIN_AD_NEW" method="_on_button_pressed"]
+[connection signal="pressed" from="WIN_AD_NEW/MarginContainer/VBoxContainer/Gen_Code" to="WIN_AD_NEW" method="_on_button_pressed"]
+[connection signal="pressed" from="WIN_AD_NEW/MarginContainer/VBoxContainer/Add_Groups" to="WIN_AD_NEW" method="Add_Groups"]
 [connection signal="close_requested" from="WIN_DELPROF2" to="WIN_DELPROF2" method="_on_close_requested"]
 [connection signal="pressed" from="WIN_DELPROF2/MarginContainer/VBoxContainer/button" to="WIN_DELPROF2" method="_on_button_pressed"]
 [connection signal="pressed" from="WIN_DELPROF2/MarginContainer/VBoxContainer/button2" to="WIN_DELPROF2" method="_on_button_2_pressed"]
