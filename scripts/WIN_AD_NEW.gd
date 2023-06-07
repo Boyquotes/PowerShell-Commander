@@ -111,4 +111,5 @@ func Load_Positions_Config() -> void:
 				print("Unexpected data")
 		else:
 			print("JSON Parse Error: ", json.get_error_message(), " in ", text, " at line ", json.get_error_line())
-		file = null
+		json.is_queued_for_deletion()
+		file.is_queued_for_deletion()
