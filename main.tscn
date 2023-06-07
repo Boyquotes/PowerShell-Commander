@@ -359,13 +359,6 @@ layout_mode = 2
 text = "Position"
 flat = false
 switch_on_hover = true
-item_count = 3
-popup/item_0/text = "Deputy (PATROL)"
-popup/item_0/id = 0
-popup/item_1/text = "Deputy (JAIL)"
-popup/item_1/id = 1
-popup/item_2/text = "Emergency Communications Officer (Dispatcher)"
-popup/item_2/id = 2
 
 [node name="Button" type="Button" parent="WIN_AD_NEW/MarginContainer/VBoxContainer"]
 layout_mode = 2
