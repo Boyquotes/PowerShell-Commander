@@ -1,9 +1,5 @@
 extends Window
 
-# TODO:
-# 1. Sheriffs -> Sheriff's
-# 2. Adding User to Groups
-
 signal consoleMSG(text : String)
 
 @export var first_name : LineEdit
@@ -25,6 +21,7 @@ func _ready():
 	user_pos_popup.id_pressed.connect(User_Position_Menu_Popup)
 
 func _on_close_requested() -> void:
+	reset()
 	hide()
 
 func reset() -> void:
