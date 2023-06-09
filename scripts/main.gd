@@ -200,15 +200,15 @@ func IPCommandTabMenu(id : int) -> void:
 func ADTabMenu(id : int) -> void:
 	match id:
 		0:
-			consoleCommandADLocked(["Search-AdAccount", "-LockedOut"])
-		1:
-			WIN_AD.hide()
-			WIN_AD.reset()
-			WIN_AD.show()
-		2:
 			WIN_AD_NEW.hide()
 			WIN_AD_NEW.reset()
 			WIN_AD_NEW.show()
+		1:
+			consoleCommandADLocked(["Search-AdAccount", "-LockedOut"])
+		2:
+			WIN_AD.hide()
+			WIN_AD.reset()
+			WIN_AD.show()
 
 func AppTabMenu(id : int) -> void:
 	match id:
