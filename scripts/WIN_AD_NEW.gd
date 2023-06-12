@@ -67,22 +67,22 @@ func _on_button_pressed() -> void:
 		
 		var _textBuffer : String = consoleCommand([
 		"New-ADUser",
-		"-Name", 				str("\'" + first_name.text + " " + last_name.text + "\'"),
+		"-Name", 				str("\'" + first_name.text.replace("\'", "\'\'") + " " + last_name.text.replace("\'", "\'\'") + "\'"),
 		"-SamAccountName", 		str("\'" + username.text.to_lower() + "\'").replace(" ", ""),
-		"-UserPrincipalName", 	str("\'" + username.text + "@kcsdadmn.com" + "\'").to_lower().replace(" ", ""),
-		"-GivenName", 			str("\'" + first_name.text + "\'").replace(" ", ""),
-		"-Surname", 			str("\'" + last_name.text + "\'").replace(" ", ""),
-		"-DisplayName", 		str("\'" + first_name.text + " " + last_name.text + "\'"),
-		"-EmailAddress", 		str("\'" + first_name.text.left(1) + last_name.text + "@kcgov.us" + "\'").to_lower().replace(" ", ""),
+		"-UserPrincipalName", 	str("\'" + username.text.replace("\'", "\'\'") + "@kcsdadmn.com" + "\'").to_lower().replace(" ", ""),
+		"-GivenName", 			str("\'" + first_name.text.replace("\'", "\'\'") + "\'").replace(" ", ""),
+		"-Surname", 			str("\'" + last_name.text.replace("\'", "\'\'") + "\'").replace(" ", ""),
+		"-DisplayName", 		str("\'" + first_name.text.replace("\'", "\'\'") + " " + last_name.text.replace("\'", "\'\'") + "\'"),
+		"-EmailAddress", 		str("\'" + first_name.text.left(1) + last_name.text.replace("\'", "\'\'") + "@kcgov.us" + "\'").to_lower().replace(" ", ""),
 		"-AccountPassword", 	str("(ConvertTo-SecureString -AsPlainText " + "\'" + password.text.replace(" ", "") + "\'" + " -Force)"),
 		"-CannotChangePassword", "$false",
 		"-ChangePasswordAtLogon", "$true",
-		"-Description", 		str("\'" + config.description + badge_text + "\'"),
-		"-Title", 				str("\'" + config.title + "\'"),
-		"-Department", 			str("\'" + config.department + "\'"),
+		"-Description", 		str("\'" + config.description.replace("\'", "\'\'") + badge_text + "\'"),
+		"-Title", 				str("\'" + config.title.replace("\'", "\'\'") + "\'"),
+		"-Department", 			str("\'" + config.department.replace("\'", "\'\'") + "\'"),
 		"-Company", 			str("\'" + config.company.replace("\'", "\'\'") + "\'"),
 		"-Path", 				str("\'" + config.distinguishedName.replace("\'", "\'\'") + "\'"),
-		"-Profilepath", 		str("\'" + config.profilepath + username.text + "\'"),
+		"-Profilepath", 		str("\'" + config.profilepath.replace("\'", "\'\'") + username.text + "\'"),
 		"-Enabled $false"
 		])
 		if (_textBuffer == ""):
