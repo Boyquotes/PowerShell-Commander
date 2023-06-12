@@ -65,36 +65,23 @@ func _on_button_pressed() -> void:
 		if (badge.text != ""):
 			badge_text = " - #" + badge.text
 		
-		first_name.text = first_name.text.replace("\'", "\'\'")
-		last_name.text = last_name.text.replace("\'", "\'\'")
-		username.text = username.text.to_lower().replace("\'", "")
-		password.text = password.text.replace(" ", "")
-		
-		config.description = config.description.replace("\'", "\'\'")
-		config.title = config.title.replace("\'", "\'\'")
-		config.department = config.department.replace("\'", "\'\'")
-		config.company = config.company.replace("\'", "\'\'")
-		config.distinguishedName = config.distinguishedName.replace("\'", "\'\'")
-		config.profilepath = config.profilepath.replace("\'", "\'\'")
-		
-		
 		var _textBuffer : String = consoleCommand([
 		"New-ADUser",
 		"-Name", 				str("\'" + first_name.text + " " + last_name.text + "\'"),
-		"-SamAccountName", 		str("\'" + username.text + "\'"),
-		"-UserPrincipalName", 	str("\'" + username.text + "@kcsdadmn.com" + "\'"),
-		"-GivenName", 			str("\'" + first_name.text + "\'"),
-		"-Surname", 			str("\'" + last_name.text + "\'"),
+		"-SamAccountName", 		str("\'" + username.text.to_lower() + "\'").replace(" ", ""),
+		"-UserPrincipalName", 	str("\'" + username.text + "@kcsdadmn.com" + "\'").to_lower().replace(" ", ""),
+		"-GivenName", 			str("\'" + first_name.text + "\'").replace(" ", ""),
+		"-Surname", 			str("\'" + last_name.text + "\'").replace(" ", ""),
 		"-DisplayName", 		str("\'" + first_name.text + " " + last_name.text + "\'"),
-		"-EmailAddress", 		str("\'" + first_name.text.left(1) + last_name.text + "@kcgov.us" + "\'").to_lower(),
-		"-AccountPassword", 	str("(ConvertTo-SecureString -AsPlainText " + "\'" + password.text + "\'" + " -Force)"),
+		"-EmailAddress", 		str("\'" + first_name.text.left(1) + last_name.text + "@kcgov.us" + "\'").to_lower().replace(" ", ""),
+		"-AccountPassword", 	str("(ConvertTo-SecureString -AsPlainText " + "\'" + password.text.replace(" ", "") + "\'" + " -Force)"),
 		"-CannotChangePassword", "$false",
 		"-ChangePasswordAtLogon", "$true",
 		"-Description", 		str("\'" + config.description + badge_text + "\'"),
 		"-Title", 				str("\'" + config.title + "\'"),
 		"-Department", 			str("\'" + config.department + "\'"),
-		"-Company", 			str("\'" + config.company + "\'"),
-		"-Path", 				str("\'" + config.distinguishedName + "\'"),
+		"-Company", 			str("\'" + config.company.replace("\'", "\'\'") + "\'"),
+		"-Path", 				str("\'" + config.distinguishedName.replace("\'", "\'\'") + "\'"),
 		"-Profilepath", 		str("\'" + config.profilepath + username.text + "\'"),
 		"-Enabled $false"
 		])
